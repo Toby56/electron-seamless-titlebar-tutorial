@@ -308,7 +308,7 @@ We need to give it a style of `-webkit-app-region: drag`. The reason we don't ju
 
 If you reload now, you will be able to drag the window around again, and the window can be resized at the top.
 
-## 5. Add window control buttons
+## 4. Add window control buttons
 
 It's time to add the minimise, maximise, restore and close buttons. To do this, we'll need the icons. [A previous version of this tutorial](https://github.com/binaryfunt/electron-seamless-titlebar-tutorial/tree/v1.0.0#5-add-window-control-buttons) used the [Segoe MDL2 Assets](https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font) font for the icons. However, these have some issues, such as [high DPI display scaling](https://github.com/binaryfunt/electron-seamless-titlebar-tutorial/issues/11) and [lack of cross-platform compatibility](https://github.com/binaryfunt/electron-seamless-titlebar-tutorial/issues/1).
 
@@ -389,7 +389,7 @@ For some reason, the PNG icons are not rendered at the correct 10 device indepen
 
 The feature `device-pixel-ratio` without the webkit prefix does not exist yet, but no harm in future-proofing. The reason we don't just give the width/height rule for all device pixel ratios is that this leads to fuzzy anti-aliasing for some of them.
 
-## 6. Style the window control buttons
+### Styling the window control buttons
 
 First of all, the buttons shouldn't be part of the window drag region, so we'll exclude them. Also, we don't want to be able to select the icon images. We also need to add hover effects. The default Windows close button hover colour is `#E81123`. When active, the button becomes `#F1707A` and the icon becomes black, which can be achieved using [the invert filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/invert). Lastly, we'll hide the restore button by default (again, we'll implement switching between the maximise/restore buttons later).
 
@@ -585,6 +585,6 @@ And put all of the titlebar buttons code in there instead and just leave the bar
 [intro 1]: screenshots/Intro-1.png
 [intro 2]: screenshots/Intro-2.png
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODM4MzIzODc3LDE1NDA3NjE3MjAsLTIwMD
-c4OTgwNzZdfQ==
+eyJoaXN0b3J5IjpbLTE4NDUyMTUzOTYsMTU0MDc2MTcyMCwtMj
+AwNzg5ODA3Nl19
 -->
