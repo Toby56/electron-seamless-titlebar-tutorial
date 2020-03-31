@@ -148,11 +148,11 @@ p {
   overflow-y: auto;
 }
 ```
-`#main` will now become our scrolling element (instead of `body`) and we've left some space above it for the titlebar
+`#main` will now become our scrolling element (instead of `body`) and we've left some space above it for the upcoming titlebar.
 
 ### Theming
 
-One small feature of the titlebar in this tutorial is that At the moment this is done by applying a class to the `<body>` element and styling everything accordingly, like so:
+One small feature of the titlebar in this tutorial is that the text and icons can be be black or white depending on whether the b At the moment this is done by applying a class to the `<body>` element and styling everything accordingly, like so:
 
 ```css
 body.theme-light {
@@ -592,5 +592,5 @@ And put all of the titlebar buttons code in there instead and just leave the bar
 [intro 1]: screenshots/Intro-1.png
 [intro 2]: screenshots/Intro-2.png
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc3NTQ4OTYxMCwtMjAwNzg5ODA3Nl19
+eyJoaXN0b3J5IjpbNTc5OTUyNTk1LC0yMDA3ODk4MDc2XX0=
 -->
