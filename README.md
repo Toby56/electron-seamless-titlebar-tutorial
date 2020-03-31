@@ -75,7 +75,7 @@ README.md
 renderer.js
 ```
 
-For the moment we'll just need a `css` file for our styles, call it `style.css`.
+For the moment we'll just need to add a `css` file for our styles, call it `style.css`.
 
 Next we'll open `index.html` and make some modifications. We'll wrap all the main content in it's own `<div id="main">` element and put all the text under the heading in a `<p>` element.
 
@@ -592,5 +592,5 @@ And put all of the titlebar buttons code in there instead and just leave the bar
 [intro 1]: screenshots/Intro-1.png
 [intro 2]: screenshots/Intro-2.png
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDc4OTgwNzZdfQ==
+eyJoaXN0b3J5IjpbLTc3NTQ4OTYxMCwtMjAwNzg5ODA3Nl19
 -->
