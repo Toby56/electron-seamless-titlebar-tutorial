@@ -221,6 +221,7 @@ We're going to create our own title bar using HTML and CSS. Just add some HTML l
     <div id="titlebar-buttons"></div>
   </div>
 
+  <!-- App content -->
   <div id="main">
     <h1>Hello World!</h1>
     <p>
@@ -234,8 +235,6 @@ We're going to create our own title bar using HTML and CSS. Just add some HTML l
   <script src="./renderer.js"></script>
 </body>
 ```
-
-You can see there isn't very much at the moment.
 
 The default title bar height in Windows is 32px. We want the titlebar fixed at the top of the DOM. I'm giving it a background colour temporarily so we can see where it is. We need to make sure `#main` is position 32px lower, so it doesn't overlap with the titlebar (`#main` is now replacing `body` as the scrolling content).
 
@@ -592,5 +591,6 @@ And put all of the titlebar buttons code in there instead and just leave the bar
 [intro 1]: screenshots/Intro-1.png
 [intro 2]: screenshots/Intro-2.png
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0MDc2MTcyMCwtMjAwNzg5ODA3Nl19
+eyJoaXN0b3J5IjpbLTY0MjIwOTMyNywxNTQwNzYxNzIwLC0yMD
+A3ODk4MDc2XX0=
 -->
