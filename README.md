@@ -288,15 +288,9 @@ The default title bar height in Windows is 32px. We want the titlebar fixed at t
 
 > **Tip:** you can do <kbd>ctrl</kbd>+<kbd>R</kbd> to reload the the webpage whithout restarting the whole app.
 
-## 4. Make the title bar draggable
+### Make the title bar draggable
 
 You might notice our new titlebar isn't actually draggable. To fix this, we add a div to `#titlebar`:
-
-```html
-<header id="titlebar">
-  <div id="drag-region"></div>
-</header>
-```
 
 We need to give it a style of `-webkit-app-region: drag`. The reason we don't just add this style to `#titlebar` is that we also want the cursor to change to resize when we hover near the edge of the window at the top. If the whole title bar was draggable, this wouldn't happen. So we also add some padding to the non-draggable `#titlebar` element.
 
@@ -591,6 +585,6 @@ And put all of the titlebar buttons code in there instead and just leave the bar
 [intro 1]: screenshots/Intro-1.png
 [intro 2]: screenshots/Intro-2.png
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0MjIwOTMyNywxNTQwNzYxNzIwLC0yMD
-A3ODk4MDc2XX0=
+eyJoaXN0b3J5IjpbODM4MzIzODc3LDE1NDA3NjE3MjAsLTIwMD
+c4OTgwNzZdfQ==
 -->
