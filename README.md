@@ -31,8 +31,6 @@ npm install
 npm start
 ```
 
----
-
 # The tutorial<!-- omit in toc -->
 
 - [1. Let's begin!](#1-lets-begin)
@@ -42,17 +40,17 @@ npm start
 - [2. Making the window frameless](#2-making-the-window-frameless)
   - [Bye bye old ugly window frame!](#bye-bye-old-ugly-window-frame)
   - [Creating a replacement title bar](#creating-a-replacement-title-bar)
-- [4. Make the title bar draggable](#4-make-the-title-bar-draggable)
-- [5. Add window control buttons](#5-add-window-control-buttons)
-- [6. Style the window control buttons](#6-style-the-window-control-buttons)
+  - [Make the title bar draggable](#make-the-title-bar-draggable)
+- [4. Add window control buttons](#4-add-window-control-buttons)
+  - [Styling the window control buttons](#styling-the-window-control-buttons)
 - [7. Add the window title](#7-add-the-window-title)
 - [8. Implement window controls functionality](#8-implement-window-controls-functionality)
 - [9. Adding styling for when the window is maximized](#9-adding-styling-for-when-the-window-is-maximized)
-- [Customisability and more!](#customisability-and-more)
+- [Customization and more!](#customization-and-more)
   - [Theming more in-depth](#theming-more-in-depth)
   - [The 1px border!](#the-1px-border)
   - [WIndows 10 Acrylic effect](#windows-10-acrylic-effect)
-  - [Multiplatform compatability (having a seamless titlbar on MacOS)](#multiplatform-compatability-having-a-seamless-titlbar-on-macos)
+  - [Multiplatform compatability (having a seamless titlebar on MacOS)](#multiplatform-compatability-having-a-seamless-titlebar-on-macos)
 
 ## 1. Let's begin!
 
@@ -60,7 +58,7 @@ npm start
 
 ### Starting out with the electron quickstart app
 
-First, we're going to clone the [electron-quickstart-app](https://github.com/electron/electron-quick-start) from GitHub (`git clone https://github.com/electron/electron-quick-start`). You shoudl run `npm install` to install all the dependencies, and `npm start` everytime you want to run your app. If everything goes well, you will have the starting point of our app:
+First, we're going to clone the [electron-quickstart-app](https://github.com/electron/electron-quick-start) from GitHub (`git clone https://github.com/electron/electron-quick-start`). You should run `npm install` to install all the dependencies, and `npm start` every time you want to run your app. If everything goes well, you will have the starting point of our app:
 
 And you should have these files inside the project:
 
@@ -76,11 +74,11 @@ README.md
 renderer.js
 ```
 
-The only file we'll need to add at the moment is a `css` file for our styles, just call it `style.css`.
+For the moment we'll just need to add a `css` file for our styles, call it `style.css`.
 
-Next we'll open `index.html` and make some modifications. The only things well do for now is link the stylesheet from earlier, wrap all the main content in it's own `<div id="main">` element and put all the text under the heading in a `<p>` element.
+Next we'll open `index.html` and make some modifications. We'll wrap all the main content in it's own `<div id="main">` element and put all the text under the heading in a `<p>` element.
 
-Aftwerwards your code should look something like this:
+Afterwards your code should look something like this:
 
 ```html
 <!DOCTYPE html>
@@ -113,7 +111,7 @@ Aftwerwards your code should look something like this:
 
 And the app should look something like this:
 
-As you can see, we've also added a bit Lorem ipsum, just so our window isn't feeling so empty!
+As you can see, we've also added some lorem ipsum so our window isn't looking so empty!
 
 ### Adding some basic styling
 
@@ -128,7 +126,6 @@ body {
   height: 100vh;
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  border: 1px solid;
 }
 
 h1 {
@@ -150,10 +147,11 @@ p {
   overflow-y: auto;
 }
 ```
+`#main` will now become our scrolling element (instead of `body`) and we've left some space above it for the upcoming titlebar.
 
 ### Theming
 
-One big part tutorial is that it supports light and dark themes. This means that if the background color of your app is a dark color or a light color, the text and icons of the titlebar will can adapt. At the moment this is done by applying a class to the `<body>` element and styling everything accordingly, like so:
+One small feature of the titlebar in this tutorial is that the text and icons can be be black or white depending on whether the background color of the titlebar is light or dark. We'll get to that again later, but at the moment this is done by applying a class to the `<body>` element and styling everything accordingly, like so:
 
 ```css
 body.theme-light {
@@ -199,7 +197,7 @@ const mainWindow = new BrowserWindow({
 });
 ```
 
-Make sure you set the `backgroundColor` to whatever you want it to be, which will make you app look smoother when it starts and also enables sub-pixel antialiasing ([see here for details](https://github.com/electron/electron/issues/6344#issuecomment-420371918)).
+Also make sure you set the `backgroundColor` to whatever you want it to be, which will make you app look smoother when it starts and also enables sub-pixel antialiasing ([see here for details](https://github.com/electron/electron/issues/6344#issuecomment-420371918)).
 
 > **Tip:** uncomment `mainWindow.webContents.openDevTools()` to open developer tools every time the app is run.
 
@@ -222,6 +220,7 @@ We're going to create our own title bar using HTML and CSS. Just add some HTML l
     <div id="titlebar-buttons"></div>
   </div>
 
+  <!-- App content -->
   <div id="main">
     <h1>Hello World!</h1>
     <p>
@@ -235,8 +234,6 @@ We're going to create our own title bar using HTML and CSS. Just add some HTML l
   <script src="./renderer.js"></script>
 </body>
 ```
-
-You can see there isn't very much at the moment.
 
 The default title bar height in Windows is 32px. We want the titlebar fixed at the top of the DOM. I'm giving it a background colour temporarily so we can see where it is. We need to make sure `#main` is position 32px lower, so it doesn't overlap with the titlebar (`#main` is now replacing `body` as the scrolling content).
 
@@ -290,15 +287,9 @@ The default title bar height in Windows is 32px. We want the titlebar fixed at t
 
 > **Tip:** you can do <kbd>ctrl</kbd>+<kbd>R</kbd> to reload the the webpage whithout restarting the whole app.
 
-## 4. Make the title bar draggable
+### Make the title bar draggable
 
 You might notice our new titlebar isn't actually draggable. To fix this, we add a div to `#titlebar`:
-
-```html
-<header id="titlebar">
-  <div id="drag-region"></div>
-</header>
-```
 
 We need to give it a style of `-webkit-app-region: drag`. The reason we don't just add this style to `#titlebar` is that we also want the cursor to change to resize when we hover near the edge of the window at the top. If the whole title bar was draggable, this wouldn't happen. So we also add some padding to the non-draggable `#titlebar` element.
 
@@ -316,7 +307,7 @@ We need to give it a style of `-webkit-app-region: drag`. The reason we don't ju
 
 If you reload now, you will be able to drag the window around again, and the window can be resized at the top.
 
-## 5. Add window control buttons
+## 4. Add window control buttons
 
 It's time to add the minimise, maximise, restore and close buttons. To do this, we'll need the icons. [A previous version of this tutorial](https://github.com/binaryfunt/electron-seamless-titlebar-tutorial/tree/v1.0.0#5-add-window-control-buttons) used the [Segoe MDL2 Assets](https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font) font for the icons. However, these have some issues, such as [high DPI display scaling](https://github.com/binaryfunt/electron-seamless-titlebar-tutorial/issues/11) and [lack of cross-platform compatibility](https://github.com/binaryfunt/electron-seamless-titlebar-tutorial/issues/1).
 
@@ -397,7 +388,7 @@ For some reason, the PNG icons are not rendered at the correct 10 device indepen
 
 The feature `device-pixel-ratio` without the webkit prefix does not exist yet, but no harm in future-proofing. The reason we don't just give the width/height rule for all device pixel ratios is that this leads to fuzzy anti-aliasing for some of them.
 
-## 6. Style the window control buttons
+### Styling the window control buttons
 
 First of all, the buttons shouldn't be part of the window drag region, so we'll exclude them. Also, we don't want to be able to select the icon images. We also need to add hover effects. The default Windows close button hover colour is `#E81123`. When active, the button becomes `#F1707A` and the icon becomes black, which can be achieved using [the invert filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/invert). Lastly, we'll hide the restore button by default (again, we'll implement switching between the maximise/restore buttons later).
 
@@ -535,7 +526,7 @@ function handleWindowControls() {
 
 ## 9. Adding styling for when the window is maximized
 
-Now all there is to do is to add some CSS for when the window is in the maximized state. When the window is maximized we should be able to drag from the very top down to restore it, so we should remove the drag region padding and set its width to 100%. We also need to swap between the maximize and restore buttons.
+Now all there is to do is to add some CSS for when the window is in the maximized state. When the window is maximized we should be able to drag from the very top down to restore it, so we should remove the drag region spacing, and we also  need to swap between the maximize and restore buttons.
 
 ```css
 .maximized #titlebar {
@@ -556,15 +547,15 @@ Now all there is to do is to add some CSS for when the window is in the maximize
 }
 ```
 
-## Customisability and more!
+## Customization and more!
 
 ### Theming more in-depth
 
-Technically the theming in this tutorial is mostly for the titlebar, not neccassarily the whole app. Therefore, you can have a dark themed title bar (say, with a black or dark blue background and white text) but have a light themed app, like GitHub Desktop. If you want this, then you can have a seperate class on the titlebar and style everthing using that, instead of the body classes. Then you can make the text color and background color of the app independant from that of the titlebar. The only other thing you need to me mindful of is the 1px border around the screen, which is usually tinted a lighter color than the background color for dark themes and a darker color than the background color for light themes, and we do this by making it transparent white or black. But if you have the titlebar a seperate color, then you will probably want the border color to depend on the titlebar color instead. So for a black titlebar, you would want a black border etc. That is, if you want the border at all, which brings us to...
-
 ### The 1px border!
 
-The 1px border is quite problematic, firstly because of a chromium bug that cuts of 1px from the bottom and right edges of the window on scaling factors that aren't a multiple of 100%, and secondly because when the everything is scaled, the border will get thicker, which we don't want. So everything is okay for 100% scaling, but for any other scaling factor, the border is likely to be messed up in one way or another. That might be one reason why none of the other apps that use electron and have a custom windows titlebar (GitHub Desktop, VS Code, Slack, Discord, Microsoft Teams just to name a few) have a 1px border. Or maybe they just didn't bother since that would be a windows only thing and it looks good without it anyway. Your choice.
+The 1px border is quite problematic, firstly because of a chromium bug that caused 1px from the bottom and right edges of the window to be usually cut off depending on window dimensions on scaling factors that aren't a multiple of 100%, and secondly because when the everything is scaled, the border will get thicker, which we don't want.
+
+So everything is okay for 100% scaling, but for any other scaling factor (which will be enabled by default on windows for resolutions 1080p and above), the border is likely to be messed up in one way or another. That might be one reason why none of the other apps that use electron or NW.js and have a custom Windows titlebar (GitHub Desktop, Spotify, VS Code, Slack, Discord, Microsoft Teams etc) have a 1px border. It looks completely fine without it, so I would recommend not having it.
 
 ### WIndows 10 Acrylic effect
 
@@ -574,11 +565,13 @@ One of the screenshots at the top shows off a fancy transparent Windows 10 fluen
 ewc.setAcrylic(win, 0xbb000000);
 ```
 
-The first argument is the electron window that you want to have the acrylic effect, and the second is an ARGB hexadecimal color value that you want the acrylic to be. This means you can make the acrylic background any color or opacity you want. Give it a try! You can find all the other functions of ewc in it's source code and example app [here](https://github.com/23phy/ewc). The main problem with ewc at the moment is that there is a Windows mouse polling issue which means window dragging is really slow and delayed when this is enable. You can fix this by disabling the acrylic to a non-problematic ewc mode when the window is dragged with a debounce function, which works pretty well. But then you find out that the acrylic will break if you enable it from any ewc mode that is transparent when Windows is in battery saver mode. But this means that your window will have to go completely opaque when it is being dragged, and disabling and re-enabling acrylic in this way produces a flash of transparency. All I'm saying is it can get a bit messy, so your choice again!
+The first argument is the electron window that you want to have the acrylic effect, and the second is an ARGB hexadecimal color value that you want the acrylic to be. This means you can make the acrylic background any color or opacity you want. Give it a try!
 
-### Multiplatform compatability (having a seamless titlbar on MacOS)
+You can find all the other functions of ewc in it's source code and example app [here](https://github.com/23phy/ewc). The main problem with ewc at the moment is that there is a Windows mouse polling issue which means window dragging is really slow and delayed when acrylic is enabled.
 
-This tutorial will look great on Windows, but what about Mac? If you want your app to be cross platform and have a seamless titlebar on MacOS too, then it is easy! Just use the `titleBarStyle: 'hidden'` feature of Electron (which basically a Mac feature that does all of this for you lol). That's great! Then you will need to only enable the Windows titlebar on Windows. Just use:
+### Multiplatform compatability (having a seamless titlebar on MacOS)
+
+This tutorial will look great on Windows, but what about Mac? If you want your app to be cross platform and have a seamless titlebar on MacOS too, then it is easy! Just use the `titleBarStyle: 'hidden'` (which basically activates a Mac feature that does all of this for you lol). That's great! Then you will need to only enable the Windows titlebar on Windows. Just use:
 
 ```javascript
 if (process.platform == "win32") {
@@ -586,7 +579,7 @@ if (process.platform == "win32") {
 }
 ```
 
-Just stick all the titlebar code in there! I don't know, I don't own a Mac and my App is made using react so only putting in the titlebar if we need to is much easier. If you want, it's not hard to but all the titlebar HTML in with JavaScript and then have alternative styles for mac using another class or something. Do you even need to do the titlebar text yourself, what height even is the titlebar on MacOS? I don't know. You figure it out.
+And put all of the titlebar buttons code in there instead and just leave the bar and text somehow
 
 [intro 1]: screenshots/Intro-1.png
 [intro 2]: screenshots/Intro-2.png
